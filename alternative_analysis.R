@@ -1,5 +1,10 @@
 ## alternative_analysis.R - 15 May 2015 - Ed Rogers
 #
+# NOTE: THIS SCRIPT IS SUPPLEMENTAL. IT SHOWS HOW
+# TO MUTATE THE ORIGINAL DATASET, RATHER THAN 
+# SUMMARIZE IT. IT IS NOT A REQUIRED PART OF THE 
+# COURSE PROJECT.
+#
 # This version of the run_analysis code uses
 # mutate_each() instead of summarise_each().
 # The result is the original data.frame has
