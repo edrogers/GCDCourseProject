@@ -1,0 +1,43 @@
+---
+title: "Codebook"
+author: "Ed Rogers"
+date: "05/20/2015"
+output: pdf_document
+---
+
+This is the Codebook for the Getting and Cleaning Data Course Project. Written in R Markdown, it is most easily read as a PDF. This can be done by opening Codebook.pdf or by "Knitting" the R Markdown file into PDF format, provided all the necessary libraries are installed.
+
+# Explanation of dataset
+
+TinyAveragesHAR.csv is a small dataset that shows by-group averages for a subset of the Human Activity Recognition Using Smartphones Dataset created by Reyes-Ortiz, et.al. 
+
+For each of the features, there are 180 different groups for which average values have been computed. These 180 groups represent every combination of test subject (of which there were 30) and test activity (of which there were 6), that was tested.
+
+There are 2 factors ("Subject" and "Activity") along with 79 features making up the 81 columns of this dataset. The 79 features are best explained by their creators, who are quoted here:
+
+> The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+> 
+> Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+> 
+> Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+> 
+> These signals were used to estimate variables of the feature vector for each pattern:  
+> '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+The only measures of these variables included in TidyAveragesHAR.csv were
+
+> | mean(): Mean value
+> | std(): Standard deviation
+> | meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+
+# Column Names in TidyAveragesHAR.csv and their counterpart in UCI HAR Dataset
+
+Below is a table of variable names. In the first column, the names as they are found in the TidyAveragesHAR.csv file are listed. In the second column, the corresponding names as found in "UCI HAR Dataset/features.txt" are listed. (Note, the 2 factors, "Subject" and "Activity" have no corresponding name in "UCI HAR Dataset", and are left unchanged)
+
+```{r, echo=FALSE}
+myColClasses <- c(rep("factor",times=2),rep("numeric",times=79))
+fromFileData <- read.csv("TidyAveragesHAR.csv",colClasses=myColClasses)
+source('~/R/getCleanData/run_analysis.R')
+cbind("Col Names in TidyAveragesHAR.csv" = names(fromFileData),
+      "Features in UCI HAR Dataset" = names(dataHARMeansOnly))
+```
